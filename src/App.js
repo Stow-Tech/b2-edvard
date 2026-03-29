@@ -126,8 +126,8 @@ export default function App() {
         <div style={s.sidebarTop}>
           <LogoMark size={40} />
           <div>
-            <div style={s.brandName}>LINGUA<span style={{ color: '#E5534B' }}>/BRIDGE</span></div>
-            <div style={s.brandSub}>by Edvard Stow</div>
+            <div style={s.brandName}>LINGUA<span style={{ color: '#E5534B' }}>-BRIDGE</span></div>
+            <div style={s.brandSub}>by Edvard</div>
           </div>
         </div>
 
@@ -138,12 +138,12 @@ export default function App() {
 
         <nav style={s.nav}>
           <button
-  onClick={() => setActiveCategory('__flashcards__')}
-  style={{ ...s.navItem, ...(activeCategory === '__flashcards__' ? s.navItemActive : {}) }}
->
-  <span style={{ ...s.navDot, background: activeCategory === '__flashcards__' ? '#F2C94C' : 'transparent', border: '1.5px solid #F2C94C' }} />
-  <span style={{ flex: 1, textAlign: 'left' }}>Flashcards</span>
-</button>
+            onClick={() => setActiveCategory('__flashcards__')}
+            style={{ ...s.navItem, ...(activeCategory === '__flashcards__' ? s.navItemActive : {}) }}
+          >
+            <span style={{ ...s.navDot, background: activeCategory === '__flashcards__' ? '#F2C94C' : 'transparent', border: '1.5px solid #F2C94C' }} />
+            <span style={{ flex: 1, textAlign: 'left' }}>Flashcards</span>
+          </button>
           <p style={s.navLabel}>Categories</p>
           {CATEGORIES.map(cat => {
             const active = cat === activeCategory;
@@ -163,7 +163,7 @@ export default function App() {
           <div style={s.avatar}>ES</div>
           <div>
             <div style={s.userName}>Edvard Stow</div>
-            <div style={s.userRole}>English Student</div>
+            <div style={s.userRole}>Kreator</div>
           </div>
         </div>
       </aside>
@@ -171,7 +171,7 @@ export default function App() {
       <main style={s.main}>
         <header style={s.header}>
           <div>
-            <h1 style={s.headerTitle}>{activeCategory === 'All' ? 'All Resources' : activeCategory}</h1>
+            <h1 style={s.headerTitle}>{activeCategory === 'All' ? 'All Resources' : activeCategory === '__flashcards__' ? 'Flashcards' : activeCategory}</h1>
             <p style={s.headerSub}>{filtered.length} link{filtered.length !== 1 ? 's' : ''} saved</p>
           </div>
           <button style={s.addBtn} onClick={() => setShowModal(true)}>
@@ -218,7 +218,7 @@ export default function App() {
             })
           )}
         </div>}
-        </main>
+      </main>
 
       {showModal && (
         <div style={s.backdrop} onClick={closeModal}>
@@ -232,7 +232,7 @@ export default function App() {
               </div>
               <button onClick={closeModal} style={s.closeBtn}><X size={18} /></button>
             </div>
-
+            
             <div style={s.modalBody}>
               {!isUnlocked ? (
                 <div>
