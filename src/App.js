@@ -104,7 +104,8 @@ export default function App() {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Delete this link?')) return;
+    const pw = window.prompt('Enter Einstein password to delete:');
+    if (pw !== ADMIN_PASSWORD) { alert('Wrong password!'); return; }
     try { await deleteDoc(doc(db, 'studyLinks', id)); }
     catch (e) { console.error(e); }
   };
@@ -228,11 +229,11 @@ export default function App() {
                 <div style={s.modalIcon}>
                   {isUnlocked ? <Plus size={16} style={{ color: '#E5534B' }} /> : <Lock size={16} style={{ color: '#aaa' }} />}
                 </div>
-                <span style={s.modalTitle}>{isUnlocked ? 'New Resource' : 'Admin Access'}</span>
+                <span style={s.modalTitle}>{isUnlocked ? 'New Resource' : 'Einstein Access'}</span>
               </div>
               <button onClick={closeModal} style={s.closeBtn}><X size={18} /></button>
             </div>
-            
+
             <div style={s.modalBody}>
               {!isUnlocked ? (
                 <div>
